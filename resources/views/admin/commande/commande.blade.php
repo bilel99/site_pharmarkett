@@ -57,15 +57,15 @@
 
 
                                 <td>
-                                    <button type="submit" class="btn btn-danger glyphicon " data-toggle="modal" data-target="#myExemplaire{{$row->id}}">Exemplaire</button>
+                                    <button type="submit" class="btn btn-primary glyphicon " data-toggle="modal" data-target="#myExemplaire{{$row->id}}">Exemplaire</button>
                                 </td>
 
                                 <td>
-                                    <button type="submit" class="btn btn-danger glyphicon " data-toggle="modal" data-target="#myLivraison{{$row->id}}">Livraison</button>
+                                    <button type="submit" class="btn btn-primary glyphicon " data-toggle="modal" data-target="#myLivraison{{$row->id}}">Livraison</button>
                                 </td>
 
                                 <td>
-                                    <button type="submit" class="btn btn-danger glyphicon " data-toggle="modal" data-target="#myPaiement{{$row->id}}">Paiement</button>
+                                    <button type="submit" class="btn btn-primary glyphicon " data-toggle="modal" data-target="#myPaiement{{$row->id}}">Paiement</button>
                                 </td>
 
 
@@ -75,7 +75,7 @@
                                 </td>
 
                                 <td>
-                                    <p><a class="btn btn-primary glyphicon glyphicon-edit" href="{{route('admin.commande.edit', $row->id)}}"></a></p>
+                                    <p><a class="btn btn-warning glyphicon glyphicon-edit" href="{{route('admin.commande.edit', $row->id)}}"></a></p>
                                 </td>
                                 
 
@@ -96,18 +96,114 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             <h4 class="modal-title">Commande n° {{$row->reference}}</h4>
                                         </div>
+
                                         <div class="modal-body">
-                                            <p>Produit exemplaire : {{$row->exemplaire}}</p>
-                                            <p>Devise : {{$row->devise->nom}}</p>
-                                            <p>Quantite : {{$row->quantite}}</p>
-                                            <p>Montant : {{$row->montant}}</p>
+                                            <p>Produit exemplaire : {{$commande_exemplaire[$row->id -1]->exemplaire->reference}}</p>
+                                            <p>Devise : {{$commande_exemplaire[$row->id - 1]->devise->nom}}</p>
+                                            <p>Quantite : {{$commande_exemplaire[$row->id - 1]->quantite}}</p>
+                                            <p>Montant : {{$commande_exemplaire[$row->id - 1]->montant}}</p>
                                         </div>
                                         <div class="modal-footer">
-                                            
+                                            <p>
+                                                <h3 class="box-title"><a class="btn btn-info glyphicon glyphicon-pencil" href="{{ URL::to('admin/commande/create') }}"></a></h3>
+                                                <button type="submit" class="btn btn-danger glyphicon glyphicon-trash " data-toggle="modal" data-target="#myModal{{$row->id}}"></button>
+                                                <a class="btn btn-warning glyphicon glyphicon-edit" href="{{route('admin.commande.edit', $row->id)}}"></a>
+
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                             </div><!-- Fin Modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <!-- Modal Exemplaire -->
+                            <div class="modal fade" id="myLivraison{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">Commande n° {{$row->reference}}</h4>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <p>Adresse : {{$commande_livraison[$row->id -1]->adresse}}</p>
+                                            <p>CP : {{$commande_livraison[$row->id -1]->cp}}</p>
+                                            <p>Ville : {{$commande_livraison[$row->id -1]->ville}}</p>
+                                            <p>Deliver_at : {{$commande_livraison[$row->id -1]->deliver_at}}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <p>
+                                                <h3 class="box-title"><a class="btn btn-info glyphicon glyphicon-pencil" href="{{ URL::to('admin/commande/create') }}"></a></h3>
+                                                <button type="submit" class="btn btn-danger glyphicon glyphicon-trash " data-toggle="modal" data-target="#myModal{{$row->id}}"></button>
+                                                <a class="btn btn-warning glyphicon glyphicon-edit" href="{{route('admin.commande.edit', $row->id)}}"></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- Fin Modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <!-- Modal Exemplaire -->
+                            <div class="modal fade" id="myPaiement{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">Commande n° {{$row->reference}}</h4>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <p>montant : {{$commande_paiement[$row->id -1]->montant}}</p>
+                                            <p>paiement_at : {{$commande_paiement[$row->id -1]->paiment_at}}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <p>
+                                                <h3 class="box-title"><a class="btn btn-info glyphicon glyphicon-pencil" href="{{ URL::to('admin/commande/create') }}"></a></h3>
+                                                <button type="submit" class="btn btn-danger glyphicon glyphicon-trash " data-toggle="modal" data-target="#myModal{{$row->id}}"></button>
+                                                <a class="btn btn-warning glyphicon glyphicon-edit" href="{{route('admin.commande.edit', $row->id)}}"></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- Fin Modal -->
+
+
+
+
+
 
 
 

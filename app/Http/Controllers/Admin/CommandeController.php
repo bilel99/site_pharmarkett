@@ -18,9 +18,11 @@ class CommandeController extends Controller {
 	public function index()
 	{
 		$commande = \App\Commande::with('user', 'devise')->get();
-		$commande_exemplaire = \App\Commande_exemplaire::with('exemplaire')->get();
-        //dd($commande_exemplaire);
-        return view('admin.commande.commande', compact('commande', 'commande_exemplaire'));
+		$commande_exemplaire = \App\Commande_exemplaire::with('exemplaire', 'devise')->get();
+        $commande_livraison = \App\Commande_livraison::with('livraison')->get();
+        $commande_paiement = \App\Commande_paiement::with('paiement')->get();
+        //dd($commande_paiement);
+        return view('admin.commande.commande', compact('commande', 'commande_exemplaire', 'commande_livraison', 'commande_paiement'));
 	}
 
 	/**

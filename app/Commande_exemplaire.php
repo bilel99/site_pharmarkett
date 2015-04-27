@@ -10,7 +10,11 @@ class Commande_exemplaire extends Model {
 
     public function exemplaire(){
         return $this->belongsTo('\App\Produit_exemplaire', 'exemplaire_id');
+    }
 
+
+    public function devise(){
+        return $this->belongsTo('\App\Devise', 'devise_id');
     }
 
 }
