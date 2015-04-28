@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Commande extends Model {
 
     protected $table = 'commande';
-    protected $fillable = ['user_id', 'devise_id', 'reference','commande_at', 'livraison_at', 'statut', 'montant'];
+    protected $fillable = ['user_id', 'exemplaire_id', 'livraison_id', 'paiement_id', 'devise_id', 'reference','commande_at', 'livraison_at', 'statut', 'montant'];
 
 
 
@@ -24,5 +24,23 @@ class Commande extends Model {
         return $this->belongsTo('\App\Devise', 'devise_id');
 
     }
+
+
+
+    public function tableExemplaire(){
+        return $this->belongsTo('\App\Commande_exemplaire', 'exemplaire_id');
+    }
+
+
+    public function livraison(){
+        return $this->belongsTo('\App\Commande_livraison', 'livraison_id');
+    }
+
+
+    public function paiement(){
+        return $this->belongsTo('\App\Commande_paiement', 'paiement_id');
+    }
+
+
 
 }

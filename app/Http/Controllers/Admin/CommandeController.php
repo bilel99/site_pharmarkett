@@ -17,12 +17,10 @@ class CommandeController extends Controller {
 	 */
 	public function index()
 	{
-		$commande = \App\Commande::with('user', 'devise')->get();
-		$commande_exemplaire = \App\Commande_exemplaire::with('exemplaire', 'devise')->get();
-        $commande_livraison = \App\Commande_livraison::with('livraison')->get();
-        $commande_paiement = \App\Commande_paiement::with('paiement')->get();
-        //dd($commande_paiement);
-        return view('admin.commande.commande', compact('commande', 'commande_exemplaire', 'commande_livraison', 'commande_paiement'));
+		$commande = \App\Commande::with('user', 'devise', 'tableExemplaire', 'livraison', 'paiement')->get();
+		$commande_exemplaire = \App\Commande_exemplaire::with('exemplaire')->get();
+        //dd($commande);
+        return view('admin.commande.commande', compact('commande', 'commande_exemplaire'));
 	}
 
 	/**
@@ -33,9 +31,13 @@ class CommandeController extends Controller {
 	public function create()
 	{
         // fonction laravel lists permet de lister les donnée dans un tableau
+        $exemplaire = \App\Commande_exemplaire::lists('quantite', 'id');
+        $livraison = \App\Commande_livraison::lists('adresse', 'id');
+        $paiement = \App\Commande_paiement::lists('montant', 'id');
+
         $user = \App\User::lists('nom', 'id');
         $devise = \App\Devise::lists('nom', 'id');
-        return view('admin.commande.create', compact('user', 'devise'));
+        return view('admin.commande.create', compact('exemplaire', 'livraison', 'paiement', 'user', 'devise'));
 	}
 
 	/**
@@ -72,10 +74,14 @@ class CommandeController extends Controller {
 	{
         $commande = Commande::find($commande->id);
         // fonction laravel lists permet de lister les donnée dans un tableau
+        $exemplaire = \App\Commande_exemplaire::lists('quantite', 'id');
+        $livraison = \App\Commande_livraison::lists('adresse', 'id');
+        $paiement = \App\Commande_paiement::lists('montant', 'id');
+
         $user = \App\User::lists('nom', 'id');
         $devise = \App\Devise::lists('nom', 'id');
 
-        return view('admin.commande.edit', compact('commande', 'user', 'devise'));
+        return view('admin.commande.edit', compact('exemplaire', 'livraison', 'paiement', 'commande', 'user', 'devise'));
 	}
 
 	/**

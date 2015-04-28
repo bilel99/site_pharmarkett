@@ -21,7 +21,14 @@ Route::group(['prefix' => 'admin'], function(){
     Route::post('contact/mail/{contact}', ['as' => 'admin.contact.mail', 'uses' => 'Admin\ContactController@mail']);
 
     Route::resource('fournisseur', 'Admin\FournisseurController');
+
     Route::resource('commande', 'Admin\CommandeController');
+        Route::resource('commandeExemplaire', 'Admin\CommandeExemplaireController');
+        Route::resource('commandeLivraison', 'Admin\CommandeLivraisonController');
+        Route::resource('commandePaiement', 'Admin\CommandePaiementController');
+
+
+
 });
 
 

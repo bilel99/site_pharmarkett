@@ -26,6 +26,17 @@
                     <div class="form-group">
 
 
+                        {!! Form::label('exemplaire_id', 'exemplaire :') !!}
+                        {!! Form::select('exemplaire_id', $exemplaire, '', ['class'=>'form-control']) !!}
+
+                        {!! Form::label('livraison_id', 'livraison :') !!}
+                        {!! Form::select('livraison_id', $livraison, '', ['class'=>'form-control']) !!}
+
+                        {!! Form::label('paiement_id', 'paiement :') !!}
+                        {!! Form::select('paiement_id', $paiement, '', ['class'=>'form-control']) !!}
+
+
+
                         {!! Form::label('user_id', 'user :') !!}
                         {!! Form::select('user_id', $user, '', ['class'=>'form-control']) !!}
 

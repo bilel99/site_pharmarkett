@@ -39,6 +39,18 @@ class RouteServiceProvider extends ServiceProvider {
         $router->model('commande', 'App\Commande', function() {
             \App::abort(404);
         });
+
+        $router->model('commandeExemplaire', 'App\Commande_exemplaire', function() {
+            \App::abort(404);
+        });
+
+        $router->model('commandeLivraison', 'App\Commande_livraison', function() {
+            \App::abort(404);
+        });
+
+        $router->model('commandePaiement', 'App\Commande_paiement', function() {
+            \App::abort(404);
+        });
 	}
 
 	/**

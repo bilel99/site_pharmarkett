@@ -24,6 +24,19 @@
 
                 <div class="box-body">
                     <div class="form-group">
+
+
+                        {!! Form::label('exemplaire_id', 'exemplaire :') !!}
+                        {!! Form::select('exemplaire_id', $exemplaire, $commande->exemplaire_id, ['class'=>'form-control']) !!}
+
+                        {!! Form::label('livraison_id', 'livraison :') !!}
+                        {!! Form::select('livraison_id', $livraison, $commande->livraison_id, ['class'=>'form-control']) !!}
+
+                        {!! Form::label('paiement_id', 'paiement :') !!}
+                        {!! Form::select('paiement_id', $paiement, $commande->paiement_id, ['class'=>'form-control']) !!}
+
+
+
                         {!! Form::label('user_id', 'user :') !!}
                         {!! Form::select('user_id', $user, $commande->user_id, ['class'=>'form-control']) !!}
 
